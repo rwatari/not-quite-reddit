@@ -1,0 +1,12 @@
+<h1>Show</h1>
+
+<%= @post.title %>
+<%= @post.url %>
+<%= @post.content %>
+
+<% if is_author? %>
+  <%= link_to 'Edit Post', edit_post_url(@post, sub_id: @post.sub_id) %>
+<% end %>
+
+<br>
+<%= link_to 'Back', sub_url(@post.sub_id) %>

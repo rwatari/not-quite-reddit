@@ -1,0 +1,9 @@
+<h1>Reddit Clone</h1>
+
+<ul>
+  <% @subs.each do |sub| %>
+    <li><%= link_to sub.title, sub_url(sub) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "New sub", new_sub_url %>
