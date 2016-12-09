@@ -1,0 +1,14 @@
+
+<li><%= comment.content %> <br>
+  <small>by <%= comment.author.username %></small> |
+  <small><%= time_ago_in_words(comment.created_at) %> ago</small>
+  <br>
+  <%= link_to "Reply", comment_url(comment) %>
+  <% unless comment.children.empty? %>
+    <ul>
+      <% comment.children.each do |child_comment| %>
+      <%= render "comment", comment: child_comment %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>

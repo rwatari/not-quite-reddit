@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy!
-    redirect_to sub_url(@post.sub_id)
+    redirect_to subs_url
   end
 
   def is_author?
@@ -57,6 +57,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content, :sub_id)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
 end

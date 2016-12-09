@@ -13,6 +13,6 @@ class PostSub < ActiveRecord::Base
   belongs_to :post
   belongs_to :sub
 
-  validates :post_id, :sub_id, presence: true
-  validates :post_id, uniqueness: { scope: :sub_id }
+  validates :post, :sub, presence: true
+  validates :sub_id, uniqueness: { scope: :post_id }
 end

@@ -5,8 +5,18 @@
 <%= @post.content %>
 
 <% if is_author? %>
-  <%= link_to 'Edit Post', edit_post_url(@post, sub_id: @post.sub_id) %>
+  <%= link_to 'Edit Post', edit_post_url(@post) %>
 <% end %>
+<br>
+<!-- render comments -->
+<ul>
+  <% @post.comments.each do |comment| %>
+    <%= render "comment", comment: comment %>
+  <% end %>
+</ul>
 
 <br>
-<%= link_to 'Back', sub_url(@post.sub_id) %>
+<%= link_to 'Make new comment', new_post_comments_url(@post) %>
+
+<br>
+<%= link_to 'Back', subs_url %>

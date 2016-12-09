@@ -1,0 +1,16 @@
+<% post = Post.find_by_id(params[:post_id]) %>
+<h1>Add new comment to <%= post.title %></h1>
+
+<form action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="comment[post_id]" value="<%= params[:post_id] %>">
+  <label>
+    <textarea name="comment[content]" rows="8" cols="80">
+      <%= @comment.content %>
+    </textarea>
+  </label>
+
+  <input type="submit" value="Add Comment">
+</form>
+
+<%= link_to 'Back', post_url(post) %>
