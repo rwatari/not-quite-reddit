@@ -35,6 +35,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @all_comments_hash = @post.comments_by_parent_id
   end
 
   def destroy
@@ -43,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   def is_author?
-    @post.author == current_user
+    @post.user_id == current_user.id
   end
 
   private

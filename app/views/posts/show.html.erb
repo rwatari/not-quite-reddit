@@ -10,8 +10,8 @@
 <br>
 <!-- render comments -->
 <ul>
-  <% @post.comments.each do |comment| %>
-    <%= render "comment", comment: comment %>
+  <% @all_comments_hash[nil].each do |comment| %>
+    <%= render "comment", comment: comment, all_comments_hash: @all_comments_hash %>
   <% end %>
 </ul>
 
