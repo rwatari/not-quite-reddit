@@ -25,6 +25,16 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by_id(params[:id])
   end
 
+  def upvote
+    Vote.create!(value: 1, voteable_id: params[:id], voteable_type: "Comment")
+    redirect_to post_url(params[:post_id])
+  end
+
+  def downvote
+    Vote.create!(value: -1, voteable_id: params[:id], voteable_type: "Comment")
+    redirect_to post_url(params[:post_id])
+  end
+
   private
 
   def comment_params

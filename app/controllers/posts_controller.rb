@@ -43,6 +43,16 @@ class PostsController < ApplicationController
     redirect_to subs_url
   end
 
+  def upvote
+    Vote.create!(value: 1, voteable_id: params[:id], voteable_type: "Post")
+    render :show
+  end
+
+  def downvote
+    Vote.create!(value: -1, voteable_id: params[:id], voteable_type: "Post")
+    render :show
+  end
+
   def is_author?
     @post.user_id == current_user.id
   end
@@ -54,7 +64,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find_by_id(params[:id])
+    @post ||= Post.find_by_id(params[:id])
   end
 
   def post_params

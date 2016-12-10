@@ -9,7 +9,7 @@
 <%= link_to "Make a new post", new_post_url(sub_id: @sub.id) %>
 
 <ul>
-  <% @sub.posts.each do |post| %>
-    <li><%= link_to post.title, post_url(post) %></li>
+  <% @sub.posts.includes(:votes).each do |post| %>
+    <li>(<%= post.score %>)<%= link_to post.title, post_url(post) %></li>
   <% end %>
 </ul>

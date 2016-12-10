@@ -12,12 +12,18 @@
 #
 
 class Post < ActiveRecord::Base
+  include Voteable
+
   belongs_to :author, foreign_key: :user_id, class_name: :User
   has_many :post_subs, dependent: :destroy, inverse_of: :post
   has_many :subs, through: :post_subs
   has_many :comments
 
   validates :title, :user_id, presence: true
+
+  def self.posts_with_scores
+    Post.joins(:votes).group(:id).sum(:value)
+  end
 
   def comments_by_parent_id
     all_comments = comments.includes(:author)
