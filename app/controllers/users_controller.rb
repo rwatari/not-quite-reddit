@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       log_in(user)
       flash[:notice] = 'You signed up successfully'
 
-      redirect_to user_url(user)
+      redirect_to subs_url
     else
       flash.now[:errors] = user.errors.full_messages
       render :new

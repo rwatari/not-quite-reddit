@@ -12,11 +12,11 @@
     <% if logged_in? %>
       <p><%= current_user.username %></p>
       <%= button_to "Log out", session_url, method: :delete %>
+      <%= link_to "All subs", subs_url %>
     <% else %>
       <%= link_to "Sign up", new_user_url %>
       <%= link_to "Sign in", new_session_url %>
     <% end %>
-    <%= link_to "All subs", subs_url %>
   </header>
 
   <section>
