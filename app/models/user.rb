@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   validates :username, :session_token, presence: true, uniqueness: true
+  validates :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
   after_initialize :ensure_session_token
@@ -21,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :subs
   has_many :posts
   has_many :comments
+  has_many :votes
 
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
